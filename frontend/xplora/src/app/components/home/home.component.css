@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    background: linear-gradient(green, blue);
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding: 8px;
+}
+.images{
+    display: flex;
+}
+.circle-images{
+    display: flex;
+    flex-direction: column;
+}
+.circle-images img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.text p{
+    color: white;
+}
+.buttons{
+    display: flex;
+    gap: 50px;
+}
+button{
+    background-color: green;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+}
