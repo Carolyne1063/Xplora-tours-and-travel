@@ -1,1 +1,11 @@
-<p>user-dashboard works!</p>
+<app-navbar-user></app-navbar-user>
+<main>
+    <app-sidebar-user (selectSection)="onSectionSelected($event)"></app-sidebar-user>
+    <div class="dashboard-container">
+        <app-dashboard-user *ngIf="selectedSection === 'dashboard'"></app-dashboard-user>
+        <app-profile-user *ngIf="selectedSection === 'profile'"></app-profile-user>
+        <app-my-bookings *ngIf="selectedSection === 'mybookings'"></app-my-bookings>
+        <app-my-reviews *ngIf="selectedSection === 'myreviews'"></app-my-reviews>
+        <app-logout-user *ngIf="selectedSection === 'logout'"></app-logout-user>
+    </div>
+</main>

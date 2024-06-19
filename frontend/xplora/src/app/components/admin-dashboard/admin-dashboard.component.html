@@ -1,1 +1,12 @@
-<p>admin-dashboard works!</p>
+<app-navbar-admin></app-navbar-admin>
+<main>
+    <app-sidebar-admin (selectSection)="onSectionSelected($event)"></app-sidebar-admin>
+    <div class="dashboard-container">
+        <app-dashboard-admin *ngIf="selectedSection === 'dashboard'"></app-dashboard-admin>
+        <app-managetours *ngIf="selectedSection === 'managetours'"></app-managetours>
+        <app-manageusers *ngIf="selectedSection === 'manageusers'"></app-manageusers>
+        <app-settings *ngIf="selectedSection === 'settings'"></app-settings>
+        <app-logout-admin *ngIf="selectedSection === 'logout'"></app-logout-admin>
+    </div>
+</main>
+
