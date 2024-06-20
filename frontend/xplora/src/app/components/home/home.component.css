@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-.container{
+
+.container-home {
     background: linear-gradient(green, blue);
     height: 80vh;
     display: flex;
@@ -10,34 +11,112 @@
     gap: 50px;
     padding: 8px;
 }
-.images{
+
+.images {
     display: flex;
 }
-.circle-images{
+
+.circle-images {
     display: flex;
     flex-direction: column;
 }
-.circle-images img{
+
+.circle-images img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
 }
-.text{
+
+.text {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.text p{
+
+.text p {
     color: white;
 }
-.buttons{
+
+.buttons {
     display: flex;
     gap: 50px;
 }
-button{
+
+button {
     background-color: green;
     color: white;
     padding: 12px;
     border: none;
     border-radius: 5px;
 }
+
+.container-tours,
+.container-howitworks,
+.container-testimonials
+{
+    height: 100vh;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    margin-top: 12px;
+}
+.container-footer {
+    height: fit-content;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    margin-top: 12px;
+    background: linear-gradient(green, blue);
+    color: white;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.container-howitworks h1,
+.container-howitworks p {
+    text-align: center;
+    padding: 8px;
+}
+
+.tours-card-container {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+}
+
+.discover-card,
+.book-card,
+.enjoy-card {
+    width: 300px;
+    height: fit-content;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 5px rgba(251, 224, 224, 0.5);
+    padding: 12px;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+}
+.discover-card:hover, .book-card:hover, .enjoy-card:hover{
+    top: -10px;
+}
+.discover-card::before,.book-card::before, .enjoy-card::before, .discover-card::after, .book-card::after, .enjoy-card::after {
+    content: '';
+    position: absolute;
+    background-color: green;
+  }
+
+  .discover-card::before, .book-card::before, .enjoy-card::before {
+    top: 0;
+    left: 0;
+    width: 2.5px;
+    height: 100%;
+  }
+
+  .discover-card::after,.book-card::after, .enjoy-card::after {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2.5px;
+  }
+ 
