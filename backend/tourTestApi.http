@@ -1,0 +1,40 @@
+###
+### Create a new tour
+POST http://localhost:3000/api/tours
+Content-Type: application/json
+
+{
+  "type": "walking",
+  "destination": "Maldives",
+  "duration": "7 days",
+  "price": "$1000"
+}
+
+###
+### Get all tours
+GET http://localhost:3000/api/tours
+
+###
+### Get a single tour by ID
+GET http://localhost:3000/api/tours/66754276-6a24-43b4-9d16-01119d04992a
+
+###
+### Update a tour by ID
+PUT http://localhost:3000/api/tours/935f9a79-15ca-4b29-a992-97262dcd299c
+Content-Type: application/json
+
+{
+  "type": "Hiking",
+  "destination": "Mountains",
+  "duration": "10 days",
+  "price": "$1200"
+}
+
+###
+### Delete a tour by ID
+DELETE http://localhost:3000/api/tours/76a20bb6-b758-4d54-8b20-7d9fa241ed2c
+
+
+
+
+

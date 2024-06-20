@@ -1,0 +1,28 @@
+### Create a new user
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+
+### Update a user by ID (replace :id with an actual user ID)
+PUT http://localhost:3000/api/users/:id
+Content-Type: application/json
+
+{
+  "firstname": "Updated Firstname",
+  "lastname": "Updated Lastname"
+}
+
+### Delete a user by ID (replace :id with an actual user ID)
+DELETE http://localhost:3000/api/users/:id
+
+### Fetch all users
+GET http://localhost:3000/api/users
+
+### Fetch a user by ID (replace :id with an actual user ID)
+GET http://localhost:3000/api/users/:id
