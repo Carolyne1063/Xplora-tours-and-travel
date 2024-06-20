@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.sidebar{
+    width: 20vw;
+    height: 85vh;
+    border: 1px solid green;
+}
+ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+ul li{
+    list-style-type: none;
+}
+li{
+    padding: 30px 0px;
+    background-color: aliceblue;
+    color: black;
+    
+}
+a{
+    padding-left: 45px;
+    font-size: 15px;
+    font-weight: bold;
+}

@@ -4,4 +4,9 @@
 }
 main{
     display: flex;
+    gap: 20px;
+}
+.dashboard-container{
+    border: 1px solid darkcyan;
+    width: 75vw;
 }

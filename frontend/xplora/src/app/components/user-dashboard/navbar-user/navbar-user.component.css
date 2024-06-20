@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 50px;
+    font-size: 20px;
+    background-color: white;
+    color: green;
+    border: 2px solid green;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+.navbar p{
+    font-size: 15px;
+    font-weight: bold;
+}

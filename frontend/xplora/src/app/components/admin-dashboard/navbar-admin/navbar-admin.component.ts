@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './navbar-admin.component.css'
 })
 export class NavbarAdminComponent {
-
+  title='Xplora'
 }
