@@ -1,28 +1,37 @@
-### Create a new user
-POST http://localhost:3000/api/users
+### Register User
+POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-  "firstname": "John",
-  "lastname": "Doe",
-  "email": "john.doe@example.com",
+  "firstname": "Carolyne",
+  "lastname": "Musenya",
+  "email": "carol.doe@example.com",
   "password": "password123"
 }
 
-### Update a user by ID (replace :id with an actual user ID)
-PUT http://localhost:3000/api/users/:id
+### Login User
+POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-  "firstname": "Updated Firstname",
-  "lastname": "Updated Lastname"
+  "email": "john.doe@example.com",
+  "password": "password"
 }
 
-### Delete a user by ID (replace :id with an actual user ID)
-DELETE http://localhost:3000/api/users/:id
+### Update User
+PUT http://localhost:3000/api/users/B375BD69-42D0-4644-B583-BB1D6EB20634
+Content-Type: application/json
 
-### Fetch all users
+{
+  "firstname": "Updated John",
+  "lastname": "Updated Doe"
+}
+
+### Delete User
+DELETE http://localhost:3000/api/users/B375BD69-42D0-4644-B583-BB1D6EB20634
+
+### Get All Users
 GET http://localhost:3000/api/users
 
-### Fetch a user by ID (replace :id with an actual user ID)
-GET http://localhost:3000/api/users/:id
+### Get User by ID
+GET http://localhost:3000/api/users/B375BD69-42D0-4644-B583-BB1D6EB20634

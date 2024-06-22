@@ -1,69 +1,66 @@
-
 import { Request, Response } from 'express';
+import { createTour, deleteTour, updateTour, getAllTours, getTourById } from '../services/tourService';
 import { Tour } from '../interfaces/tours';
-import { TourService } from '../services/tourService';
 
-const tourService = new TourService();
+const createTourController = async (req: Request, res: Response) => {
+  try {
+    const tour: Tour = {
+      id: '', // UUID will be generated in the service
+      type: req.body.type,
+      destination: req.body.destination,
+      duration: req.body.duration,
+      price: req.body.price,
+      createdAt: new Date().toISOString()
+    };
+    await createTour(tour);
+    res.status(201).json({ message: 'Tour created successfully' });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
 
-export class TourController {
-    public createTour(req: Request, res: Response): void {
-        const { type, destination, duration, price } = req.body;
-        const newTour: Tour = {
-            type,
-            destination,
-            duration,
-            price,
-            id: '',
-            createdAt: '',
-        };
+const deleteTourController = async (req: Request, res: Response) => {
+  try {
+    const tourId = req.params.id;
+    await deleteTour(tourId);
+    res.status(200).json({ message: 'Tour deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
 
-        const createdTour = tourService.createTour(newTour);
-        res.status(201).json(createdTour);
+const updateTourController = async (req: Request, res: Response) => {
+  try {
+    const tourId = req.params.id;
+    const tour = req.body;
+    await updateTour(tourId, tour);
+    res.status(200).json({ message: 'Tour updated successfully' });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
+
+const getAllToursController = async (req: Request, res: Response) => {
+  try {
+    const tours = await getAllTours();
+    res.status(200).json(tours);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
+
+const getTourByIdController = async (req: Request, res: Response) => {
+  try {
+    const tourId = req.params.id;
+    const tour = await getTourById(tourId);
+    if (tour) {
+      res.status(200).json(tour);
+    } else {
+      res.status(404).json({ message: 'Tour not found' });
     }
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
 
-    public updateTourById(req: Request, res: Response): void {
-        const { id } = req.params;
-        const { type, destination, duration, price } = req.body;
-        const updatedTour: Tour = {
-            type,
-            destination,
-            duration,
-            price,
-            id,
-            createdAt: '',
-        };
-
-        const updated = tourService.updateTourById(id, updatedTour);
-
-        if (updated) {
-            res.json(updated);
-        } else {
-            res.status(404).json({ message: 'Tour not found' });
-        }
-    }
-
-    public deleteTourById(req: Request, res: Response): void {
-        const { id } = req.params;
-        tourService.deleteTourById(id);
-        res.status(204).end();
-    }
-
-    public getAllTours(req: Request, res: Response): void {
-        const tours = tourService.getAllTours();
-        res.json(tours);
-    }
-
-    public getTourById(req: Request, res: Response): void {
-        const { id } = req.params;
-        const tour = tourService.getTourById(id);
-
-        if (tour) {
-            res.json(tour);
-        } else {
-            res.status(404).json({ message: 'Tour not found' });
-        }
-    }
-}
-
-
-export default new TourController();
+export { createTourController, deleteTourController, updateTourController, getAllToursController, getTourByIdController };

@@ -1,37 +1,61 @@
+import * as sql from 'mssql';
+import { sqlConfig } from '../sqlConfig';
 import { Tour } from '../interfaces/tours';
 import { v4 as uuidv4 } from 'uuid';
 
-export class TourService {
-    private tours: Tour[] = [];
+const createTour = async (tour: Tour) => {
+  const tourId = uuidv4();
+  const pool = await sql.connect(sqlConfig);
+  const result = await pool
+    .request()
+    .input('id', sql.UniqueIdentifier, tourId)
+    .input('type', sql.NVarChar, tour.type)
+    .input('destination', sql.NVarChar, tour.destination)
+    .input('duration', sql.NVarChar, tour.duration)
+    .input('price', sql.NVarChar, tour.price)
+    .input('createdAt', sql.DateTime, new Date())
+    .query(
+      'INSERT INTO tours (id, type, destination, duration, price, createdAt) ' +
+      'VALUES (@id, @type, @destination, @duration, @price, @createdAt)'
+    );
+  return result;
+};
 
-    public createTour(newTour: Tour): Tour {
-        const tour: Tour = {
-            ...newTour,
-            id: uuidv4(),
-            createdAt: new Date().toISOString(),
-        };
-        this.tours.push(tour);
-        return tour;
-    }
+const deleteTour = async (tourId: string) => {
+  const pool = await sql.connect(sqlConfig);
+  const result = await pool
+    .request()
+    .input('id', sql.UniqueIdentifier, tourId)
+    .query('DELETE FROM tours WHERE id = @id');
+  return result;
+};
 
-    public updateTourById(id: string, updatedTour: Tour): Tour | undefined {
-        const index = this.tours.findIndex(t => t.id === id);
-        if (index !== -1) {
-            this.tours[index] = { ...this.tours[index], ...updatedTour };
-            return this.tours[index];
-        }
-        return undefined;
-    }
+const updateTour = async (tourId: string, tour: Partial<Tour>) => {
+  const pool = await sql.connect(sqlConfig);
+  const fieldsToUpdate = Object.keys(tour)
+    .map(key => `${key} = @${key}`)
+    .join(', ');
+  const request = pool.request().input('id', sql.UniqueIdentifier, tourId);
+  Object.entries(tour).forEach(([key, value]) => {
+    request.input(key, sql.NVarChar, value);
+  });
+  const result = await request.query(`UPDATE tours SET ${fieldsToUpdate} WHERE id = @id`);
+  return result;
+};
 
-    public deleteTourById(id: string): void {
-        this.tours = this.tours.filter(t => t.id !== id);
-    }
+const getAllTours = async () => {
+  const pool = await sql.connect(sqlConfig);
+  const result = await pool.request().query('SELECT * FROM tours');
+  return result.recordset;
+};
 
-    public getAllTours(): Tour[] {
-        return this.tours;
-    }
+const getTourById = async (tourId: string) => {
+  const pool = await sql.connect(sqlConfig);
+  const result = await pool
+    .request()
+    .input('id', sql.UniqueIdentifier, tourId)
+    .query('SELECT * FROM tours WHERE id = @id');
+  return result.recordset[0];
+};
 
-    public getTourById(id: string): Tour | undefined {
-        return this.tours.find(t => t.id === id);
-    }
-}
+export { createTour, deleteTour, updateTour, getAllTours, getTourById };

@@ -1,0 +1,10 @@
+CREATE TABLE tours (
+    id UNIQUEIDENTIFIER PRIMARY KEY,
+    type NVARCHAR(50) NOT NULL,
+    destination NVARCHAR(100) NOT NULL,
+    duration NVARCHAR(50) NOT NULL,
+    price NVARCHAR(50) NOT NULL,
+    createdAt DATETIME NOT NULL
+);
+
+SELECT * FROM tours;

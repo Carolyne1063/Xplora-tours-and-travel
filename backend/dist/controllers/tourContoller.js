@@ -1,61 +1,71 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TourController = void 0;
+exports.getTourByIdController = exports.getAllToursController = exports.updateTourController = exports.deleteTourController = exports.createTourController = void 0;
 const tourService_1 = require("../services/tourService");
-const tourService = new tourService_1.TourService();
-class TourController {
-    createTour(req, res) {
-        const { type, destination, duration, price } = req.body;
-        const newTour = {
-            type,
-            destination,
-            duration,
-            price,
-            id: '',
-            createdAt: '',
+const createTourController = async (req, res) => {
+    try {
+        const tour = {
+            id: '', // UUID will be generated in the service
+            type: req.body.type,
+            destination: req.body.destination,
+            duration: req.body.duration,
+            price: req.body.price,
+            createdAt: new Date().toISOString()
         };
-        const createdTour = tourService.createTour(newTour);
-        res.status(201).json(createdTour);
+        await (0, tourService_1.createTour)(tour);
+        res.status(201).json({ message: 'Tour created successfully' });
     }
-    updateTourById(req, res) {
-        const { id } = req.params;
-        const { type, destination, duration, price } = req.body;
-        const updatedTour = {
-            type,
-            destination,
-            duration,
-            price,
-            id,
-            createdAt: '',
-        };
-        const updated = tourService.updateTourById(id, updatedTour);
-        if (updated) {
-            res.json(updated);
-        }
-        else {
-            res.status(404).json({ message: 'Tour not found' });
-        }
+    catch (error) {
+        res.status(500).json({ error: error.message });
     }
-    deleteTourById(req, res) {
-        const { id } = req.params;
-        tourService.deleteTourById(id);
-        res.status(204).end();
+};
+exports.createTourController = createTourController;
+const deleteTourController = async (req, res) => {
+    try {
+        const tourId = req.params.id;
+        await (0, tourService_1.deleteTour)(tourId);
+        res.status(200).json({ message: 'Tour deleted successfully' });
     }
-    getAllTours(req, res) {
-        const tours = tourService.getAllTours();
-        res.json(tours);
+    catch (error) {
+        res.status(500).json({ error: error.message });
     }
-    getTourById(req, res) {
-        const { id } = req.params;
-        const tour = tourService.getTourById(id);
+};
+exports.deleteTourController = deleteTourController;
+const updateTourController = async (req, res) => {
+    try {
+        const tourId = req.params.id;
+        const tour = req.body;
+        await (0, tourService_1.updateTour)(tourId, tour);
+        res.status(200).json({ message: 'Tour updated successfully' });
+    }
+    catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+exports.updateTourController = updateTourController;
+const getAllToursController = async (req, res) => {
+    try {
+        const tours = await (0, tourService_1.getAllTours)();
+        res.status(200).json(tours);
+    }
+    catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+exports.getAllToursController = getAllToursController;
+const getTourByIdController = async (req, res) => {
+    try {
+        const tourId = req.params.id;
+        const tour = await (0, tourService_1.getTourById)(tourId);
         if (tour) {
-            res.json(tour);
+            res.status(200).json(tour);
         }
         else {
             res.status(404).json({ message: 'Tour not found' });
         }
     }
-}
-exports.TourController = TourController;
-// Export an instance of the TourController class
-exports.default = new TourController();
+    catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+exports.getTourByIdController = getTourByIdController;

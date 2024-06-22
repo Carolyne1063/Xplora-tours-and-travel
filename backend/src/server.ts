@@ -2,16 +2,20 @@ import express, { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import tourRoutes from './routers/tourRoutes';
 import userRoutes from './routers/userRoutes';
+// import authenticationRoutes from './routers/authenticationRoutes';
 
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
+app.use(express.json());
 
-app.use('/api', tourRoutes);
-app.use('/api', userRoutes);
+// Use existing routes
+app.use('/api/tours', tourRoutes);
+app.use('/api/users', userRoutes);
+// app.use('/api/auth', authenticationRoutes);
 
-
+// Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Internal Server Error' });

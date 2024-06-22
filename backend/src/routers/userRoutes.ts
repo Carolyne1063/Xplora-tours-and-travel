@@ -1,13 +1,13 @@
-// src/routes/userRoutes.ts
-import express from 'express';
-import userController from '../controllers/userController';
+import { Router } from 'express';
+import { registerUser, loginUserController, updateUserController, deleteUserController, getUsers, getUser } from '../controllers/userController';
 
-const router = express.Router();
+const router = Router();
 
-router.post('/users', (req, res) => userController.createUser(req, res));
-router.put('/users/:id', (req, res) => userController.updateUserById(req, res));
-router.delete('/users/:id', (req, res) => userController.deleteUserById(req, res));
-router.get('/users', (req, res) => userController.getAllUsers(req, res));
-router.get('/users/:id', (req, res) => userController.getUserById(req, res));
+router.post('/register', registerUser);
+router.post('/login', loginUserController);
+router.put('/:userId', updateUserController); // Use userId in path
+router.delete('/:userId', deleteUserController); // Use userId in path
+router.get('/', getUsers);
+router.get('/:userId', getUser); // Use userId in path
 
 export default router;

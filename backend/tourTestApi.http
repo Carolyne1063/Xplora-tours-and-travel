@@ -1,40 +1,29 @@
-###
-### Create a new tour
-POST http://localhost:3000/api/tours
+### 1. Create Tour (POST)
+POST http://localhost:3000/api/tours/create-tour
 Content-Type: application/json
 
 {
-  "type": "walking",
-  "destination": "Maldives",
+  "type": "Adventure7",
+  "destination": "Mount Everest",
   "duration": "7 days",
-  "price": "$1000"
+  "price": "5000"
 }
 
-###
-### Get all tours
-GET http://localhost:3000/api/tours
-
-###
-### Get a single tour by ID
-GET http://localhost:3000/api/tours/66754276-6a24-43b4-9d16-01119d04992a
-
-###
-### Update a tour by ID
-PUT http://localhost:3000/api/tours/935f9a79-15ca-4b29-a992-97262dcd299c
+### 2. Update Tour (PUT)
+PUT http://localhost:3000/api/tours/E590050B-2345-40DD-822E-71AC8848AABF
 Content-Type: application/json
 
 {
-  "type": "Hiking",
-  "destination": "Mountains",
-  "duration": "10 days",
-  "price": "$1200"
+  "type": "Sightseeing",
+  "duration": "5 days",
+  "price": "3000"
 }
 
-###
-### Delete a tour by ID
-DELETE http://localhost:3000/api/tours/76a20bb6-b758-4d54-8b20-7d9fa241ed2c
+### 3. Fetch All Tours (GET)
+GET http://localhost:3000/api/tours/tours
 
+### 4. Fetch Tour by ID (GET)
+GET http://localhost:3000/api/tours/E590050B-2345-40DD-822E-71AC8848AABF
 
-
-
-
+### 5. Delete Tour (DELETE)
+DELETE http://localhost:3000/api/tours/ABE9C82A-2D32-4302-8299-BCB43C25CE3D

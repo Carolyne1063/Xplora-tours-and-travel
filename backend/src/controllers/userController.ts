@@ -1,69 +1,73 @@
-// src/controllers/userController.ts
 import { Request, Response } from 'express';
-import { UserService } from '../services/userService';
-import { User } from '../interfaces/users';
+import { createUser, loginUser, updateUser, deleteUser, getAllUsers, getUserById } from '../services/userService';
+import { User, LoginDetails } from '../interfaces/users';
+import { v4 as uuidv4 } from 'uuid'; // Import uuid library
 
-const userService = new UserService();
+const registerUser = async (req: Request, res: Response) => {
+  try {
+    const user: User = {
+      userId: uuidv4(), // Generate UUID for userId
+      ...req.body
+    };
+    await createUser(user);
+    res.status(201).json({ message: 'User created successfully' });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
 
-export class UserController {
-    createUser(req: Request, res: Response): void {
-        try {
-            const newUser: User = req.body;
-            const createdUser = userService.createUser(newUser);
-            res.status(201).json(createdUser);
-        } catch (error: any) { // Explicitly type 'error' as 'any' or 'unknown' to resolve TypeScript errors
-            res.status(500).json({ message: error.message });
-        }
+const loginUserController = async (req: Request, res: Response) => {
+  try {
+    const loginDetails: LoginDetails = req.body;
+    const token = await loginUser(loginDetails);
+    res.status(200).json(token);
+  } catch (error) {
+    res.status(401).json({ error: (error as Error).message });
+  }
+};
+
+const updateUserController = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.userId;
+    const user = req.body;
+    await updateUser(userId, user);
+    res.status(200).json({ message: 'User updated successfully' });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
+
+const deleteUserController = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.userId;
+    await deleteUser(userId);
+    res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
+
+const getUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await getAllUsers();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
+
+const getUser = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.userId;
+    const user = await getUserById(userId);
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ message: 'User not found' });
     }
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
 
-    updateUserById(req: Request, res: Response): void {
-        try {
-            const userId = req.params.id;
-            const updatedUser: User = req.body;
-            const result = userService.updateUserById(userId, updatedUser);
-            if (result) {
-                res.json(result);
-            } else {
-                res.status(404).json({ message: 'User not found' });
-            }
-        } catch (error: any) { // Explicitly type 'error' as 'any' or 'unknown' to resolve TypeScript errors
-            res.status(500).json({ message: error.message });
-        }
-    }
-
-    deleteUserById(req: Request, res: Response): void {
-        try {
-            const userId = req.params.id;
-            userService.deleteUserById(userId);
-            res.sendStatus(204);
-        } catch (error: any) { // Explicitly type 'error' as 'any' or 'unknown' to resolve TypeScript errors
-            res.status(500).json({ message: error.message });
-        }
-    }
-
-    getAllUsers(req: Request, res: Response): void {
-        try {
-            const allUsers = userService.getAllUsers();
-            res.json(allUsers);
-        } catch (error: any) { // Explicitly type 'error' as 'any' or 'unknown' to resolve TypeScript errors
-            res.status(500).json({ message: error.message });
-        }
-    }
-
-    getUserById(req: Request, res: Response): void {
-        try {
-            const userId = req.params.id;
-            const user = userService.getUserById(userId);
-            if (user) {
-                res.json(user);
-            } else {
-                res.status(404).json({ message: 'User not found' });
-            }
-        } catch (error: any) { // Explicitly type 'error' as 'any' or 'unknown' to resolve TypeScript errors
-            res.status(500).json({ message: error.message });
-        }
-    }
-}
-
-const userController = new UserController();
-export default userController;
+export { registerUser, loginUserController, updateUserController, deleteUserController, getUsers, getUser };

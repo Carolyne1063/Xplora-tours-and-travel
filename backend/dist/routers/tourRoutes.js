@@ -1,15 +1,11 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-// src/routes/tourRoutes.ts
-const express_1 = __importDefault(require("express"));
-const tourContoller_1 = __importDefault(require("../controllers/tourContoller"));
-const router = express_1.default.Router();
-router.post('/tours', (req, res) => tourContoller_1.default.createTour(req, res));
-router.put('/tours/:id', (req, res) => tourContoller_1.default.updateTourById(req, res));
-router.delete('/tours/:id', (req, res) => tourContoller_1.default.deleteTourById(req, res));
-router.get('/tours', (req, res) => tourContoller_1.default.getAllTours(req, res));
-router.get('/tours/:id', (req, res) => tourContoller_1.default.getTourById(req, res));
+const express_1 = require("express");
+const tourContoller_1 = require("../controllers/tourContoller");
+const router = (0, express_1.Router)();
+router.post('/create-tour', tourContoller_1.createTourController); // Endpoint for creating a new tour
+router.put('/:id', tourContoller_1.updateTourController); // Endpoint for updating a tour by its id
+router.delete('/:id', tourContoller_1.deleteTourController); // Endpoint for deleting a tour by its id
+router.get('/tours', tourContoller_1.getAllToursController); // Endpoint for fetching all tours
+router.get('/:id', tourContoller_1.getTourByIdController); // Endpoint for fetching a tour by its id
 exports.default = router;
