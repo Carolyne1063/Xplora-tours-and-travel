@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+h1{
+    margin-top: 12px;
+    text-align: center;
+    color: green;
+}
+.top-cards{
+    padding: 8px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.all-live-tours, .all-bookings, .revenue-collected{
+    grid-area: p;
+    margin-bottom: 110px;
+    width: 300px;
+    height: 200px;
+    background-color: white; 
+    border: 0.5px solid white; 
+    margin-right: 40px; 
+    width: 250px; 
+    height: 150px; 
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 5px 5px darkcyan;
+}
+.tours-list{
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.tour-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(darkcyan, green);
+    color: white;
+    width: 250px;
+    height: 250px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px gray;
+
+}

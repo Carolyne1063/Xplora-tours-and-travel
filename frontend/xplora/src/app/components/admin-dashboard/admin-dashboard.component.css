@@ -8,5 +8,6 @@ main{
 }
 .dashboard-container{
     border: 1px solid darkcyan;
+    border-radius: 10px;
     width: 75vw;
 }

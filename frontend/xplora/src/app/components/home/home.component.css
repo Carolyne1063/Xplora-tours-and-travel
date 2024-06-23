@@ -9,10 +9,10 @@
     display: flex;
     flex-direction: row;
     gap: 50px;
-    padding: 8px;
+    padding: 12px;
 }
 
-.images {
+.home-top-images {
     display: flex;
 }
 
@@ -49,7 +49,28 @@ button {
     border: none;
     border-radius: 5px;
 }
-
+.big-five{
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    margin-top: 12px;
+    height: fit-content;
+    padding: 20px;
+}
+.big-five h1{
+    text-align: center;
+    margin-bottom: 12px;
+}
+.images{
+    display: flex;
+}
+.images img{
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+}
+.images img:hover{
+    top: -10px;
+}
 .container-tours,
 .container-howitworks,
 .container-testimonials
@@ -58,6 +79,31 @@ button {
     border: 1px solid darkcyan;
     border-radius: 5px;
     margin-top: 12px;
+}
+.container-tours h1{
+    text-align: center;
+}
+.tours-list{
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.tour-card{
+    height: fit-content;
+    padding: 8px;
+    border: 1px solid green;
+    border-radius: 5px;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+}
+.tour-card:hover{
+    top: -10px;
+}
+.tour-card p{
+    text-align: center;
 }
 .container-footer {
     height: fit-content;
