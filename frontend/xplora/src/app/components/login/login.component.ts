@@ -43,7 +43,13 @@ export class LoginComponent implements OnInit {
       this.authService.login(credentials).subscribe(
         () => {
           console.log('Login successful');
-          this.router.navigate(['/user-dashboard']); // Redirect to user dashboard upon successful login
+          if (this.authService.getIsAdmin()) {
+            console.log('Redirecting to admin dashboard'); // Add this line for debugging
+            this.router.navigate(['/admin-dashboard']);
+          } else {
+            console.log('Redirecting to user dashboard'); // Add this line for debugging
+            this.router.navigate(['/user-dashboard']);
+          }
         },
         (error) => {
           console.error('Login failed', error);

@@ -10,6 +10,7 @@ import { tap } from 'rxjs/operators';
 export class AuthServiceService {
   private API_URL = 'http://localhost:3000/api/users';
   private loggedIn: boolean = false;
+  private isAdmin: boolean = false;
 
   constructor(private http: HttpClient) {}
 
@@ -17,26 +18,34 @@ export class AuthServiceService {
     return this.http.post<any>(`${this.API_URL}/login`, credentials)
       .pipe(
         tap((response: any) => {
-          // Assuming backend returns a token or user object on successful login
           if (response && response.token) {
-            localStorage.setItem('currentUser', JSON.stringify(response)); // Store token/user info in local storage
-            this.loggedIn = true; // Set loggedIn to true upon successful login
+            localStorage.setItem('currentUser', JSON.stringify(response));
+            this.loggedIn = true;
+
+            // Hardcoding admin credentials here
+            if (credentials.email === 'admin@example.com' && credentials.password === 'adminpassword') {
+              this.isAdmin = true;
+            }else{
+              this.isAdmin = false;
+            }
           }
         })
       );
   }
 
   logout() {
-    // Clear user data from storage upon logout
     localStorage.removeItem('currentUser');
-    this.loggedIn = false; // Set loggedIn to false upon logout
+    this.loggedIn = false;
+    this.isAdmin = false;
   }
 
   isLoggedIn(): boolean {
     return this.loggedIn;
   }
 
-  setLoggedIn(value: boolean): void {
-    this.loggedIn = value;
+  getIsAdmin(): boolean {
+    return this.isAdmin;
   }
 }
+
+  

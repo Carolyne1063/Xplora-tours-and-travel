@@ -8,4 +8,5 @@ email VARCHAR(50) UNIQUE NOT NULL,
 ADD createdAt DATETIME NOT NULL;
 
 
+
 SELECT * FROM Users;
