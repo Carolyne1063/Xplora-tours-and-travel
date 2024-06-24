@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import tourRoutes from './routers/tourRoutes';
 import userRoutes from './routers/userRoutes';
+import cors from 'cors';
 // import authenticationRoutes from './routers/authenticationRoutes';
 
 const app = express();
@@ -9,6 +10,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cors())
 
 // Use existing routes
 app.use('/api/tours', tourRoutes);

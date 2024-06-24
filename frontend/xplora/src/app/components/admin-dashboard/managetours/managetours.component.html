@@ -1,39 +1,35 @@
 <main>
-    <button>Create New Tour</button>
-<form>
-    <label for="tour-type">Tour Type</label>
-    <br>
-    <input type="text">
-    <br><br>
-    <label for="destination">Destination</label>
-    <br>
-    <input type="text">
-    <br><br>
-    <label for="duration">Duration</label>
-    <br>
-    <input type="text">
-    <br><br>
-    <label for="price">Price</label>
-    <br>
-    <input type="text">
-    <br><br>
-    <label for="image-url">Image Url</label>
-    <br>
-    <input type="text">
-    <br><br>
-    <button type="submit">Create Tour</button>
-</form>
-<div class="tours-list">
-    <div class="tour-card">
-        <p>Tour type</p>
-        <p>Destination</p>
-        <p>Duration</p>
-        <p>Price</p>
-       <div class="tour-card-buttons">
-        <button>Update</button>
-        <button>Delete</button>
-       </div>
+    <form [formGroup]="tourForm" (ngSubmit)="editMode ? updateTour() : createTour()">
+      <label for="tour-type">Tour Type</label>
+      <br>
+      <input type="text" formControlName="type">
+      <br><br>
+      <label for="destination">Destination</label>
+      <br>
+      <input type="text" formControlName="destination">
+      <br><br>
+      <label for="duration">Duration</label>
+      <br>
+      <input type="text" formControlName="duration">
+      <br><br>
+      <label for="price">Price</label>
+      <br>
+      <input type="text" formControlName="price">
+      <br><br>
+      <button type="submit">{{ editMode ? 'Update Tour' : 'Create Tour' }}</button>
+    </form>
+  
+    <div class="tours-list">
+      <div *ngFor="let tour of tours" class="tour-card">
+        <p>{{ tour.type }}</p>
+        <p>{{ tour.destination }}</p>
+        <p>{{ tour.duration }}</p>
+        <p>{{ tour.price }}</p>
+        <div class="tour-card-buttons">
+          <button (click)="setEditMode(tour)">Update</button>
+          <button (click)="deleteTour(tour.id)">Delete</button>
+        </div>
+      </div>
     </div>
-</div>
-
-</main>
+  </main>
+  

@@ -3,8 +3,8 @@ POST http://localhost:3000/api/tours/create-tour
 Content-Type: application/json
 
 {
-  "type": "Camping",
-  "destination": "Mount Kenya",
+  "type": "Hiking",
+  "destination": "Mount Kilimanjaro",
   "duration": "7 days",
   "price": "5000"
 }
