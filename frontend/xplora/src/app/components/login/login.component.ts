@@ -3,6 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserServiceService } from '../../services/userService/user-service.service'; 
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserServiceService) { // Inject the UserService
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -26,7 +27,16 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Form Submitted!', this.loginForm.value);
+      this.userService.loginUser(this.loginForm.value).subscribe(
+        response => {
+          console.log('User logged in successfully:', response);
+          // Handle successful login, maybe navigate to a different page
+        },
+        error => {
+          console.error('Error logging in user:', error);
+          // Handle login error, show an error message to the user
+        }
+      );
     }
   }
 }

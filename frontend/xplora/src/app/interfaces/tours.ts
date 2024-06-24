@@ -3,7 +3,7 @@ export interface Tour {
     type: string;
     destination: string;
     duration: string;
-    price: string;// Added imageUrl field
+    price: string;
     createdAt: string;
   }
   

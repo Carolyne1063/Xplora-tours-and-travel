@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserServiceService } from '../../services/userService/user-service.service';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -12,8 +15,9 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterComponent {
   registerForm!: FormGroup;
+  errorMessage: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserServiceService) { // Inject the UserService
     this.createForm();
   }
 
@@ -31,9 +35,20 @@ export class RegisterComponent {
   get email() { return this.registerForm.get('email')!; }
   get password() { return this.registerForm.get('password')!; }
 
+  
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log('Form Submitted!', this.registerForm.value);
+      this.userService.registerUser(this.registerForm.value)
+        .subscribe({
+          next: response => {
+            console.log('Registration successful:', response);
+            // Optionally navigate to another page or show a success message
+          },
+          error: error => {
+            console.error('Registration error:', error);
+            // Handle error: Display an error message or log the error
+          }
+        });
     }
-  }
+  } 
 }

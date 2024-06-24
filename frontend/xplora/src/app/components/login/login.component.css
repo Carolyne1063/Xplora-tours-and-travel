@@ -72,6 +72,7 @@ button{
 }
 span{
     color: blue;
+    font-size: 15px;
 }
 .text{
     display: flex;

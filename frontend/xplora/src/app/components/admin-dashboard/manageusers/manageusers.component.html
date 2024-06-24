@@ -2,30 +2,26 @@
     <h1>All Users</h1>
     <hr>
     <table>
+      <thead>
         <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th> Email</th>
-        <th>Password</th>
-        <th>Actions</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Actions</th>
         </tr>
-        <tr>
-            <td>Carolyne</td>
-            <td>Musenya</td>
-            <td>carolmartoz763gmail.com</td>
-            <td>Password123</td>
-            <td>
-                <button>Remove User</button>
-            </td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.lastname }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.password }}</td>
+          <td>
+            <button (click)="deleteUser(user.userId)">Remove User</button>
+          </td>
         </tr>
-        <tr>
-            <td>Carolyne</td>
-            <td>Musenya</td>
-            <td>carolmartoz763gmail.com</td>
-            <td>Password123</td>
-            <td>
-                <button>Remove User</button>
-            </td>
-        </tr>
+      </tbody>
     </table>
-</main>
+  </main>
+  
