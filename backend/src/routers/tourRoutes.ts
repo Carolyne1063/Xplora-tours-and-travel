@@ -10,5 +10,3 @@ router.get('/tours', getAllToursController); // Endpoint for fetching all tours
 router.get('/:id', getTourByIdController); // Endpoint for fetching a tour by its id
 
 export default router;
-
-

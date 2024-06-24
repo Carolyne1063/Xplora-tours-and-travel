@@ -11,3 +11,5 @@ BEGIN
   VALUES (@id, @type, @destination, @duration, @price, @createdAt)
 END
 GO
+
+DROP PROCEDURE CreateTour;

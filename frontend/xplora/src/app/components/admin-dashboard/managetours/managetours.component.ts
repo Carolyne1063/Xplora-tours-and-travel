@@ -96,7 +96,7 @@ export class ManageToursComponent implements OnInit {
 
   setEditMode(tour: Tour) {
     this.editMode = true;
-    this.editTourId = tour.id;
+    this.editTourId = tour.id!;
     this.tourForm.setValue({
       type: tour.type,
       destination: tour.destination,
