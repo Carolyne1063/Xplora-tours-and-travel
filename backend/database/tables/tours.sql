@@ -7,4 +7,7 @@ CREATE TABLE tours (
     createdAt DATETIME NOT NULL
 );
 
+ALTER TABLE tours
+DROP COLUMN imageUrl;
+
 SELECT * FROM tours;

@@ -47,8 +47,10 @@ export class ManageToursComponent implements OnInit {
   createTour() {
     if (this.tourForm.valid) {
       const newTour: Tour = this.tourForm.value;
+      console.log('Creating tour with data:', newTour); // Debugging log
       this.tourService.createTour(newTour).subscribe(
         () => {
+          console.log('Tour created successfully'); // Debugging log
           this.fetchAllTours();
           this.tourForm.reset();
         },
@@ -56,8 +58,13 @@ export class ManageToursComponent implements OnInit {
           console.error('Error creating tour:', error);
         }
       );
+    } else {
+      console.log('Form is invalid'); // Debugging log
     }
   }
+  
+  
+  
 
   updateTour() {
     if (this.tourForm.valid && this.editTourId) {

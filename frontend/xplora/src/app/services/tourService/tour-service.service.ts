@@ -11,14 +11,16 @@ export class TourService {
 
   constructor(private http: HttpClient) {}
 
-  // Method to create a new tour
   createTour(tour: Tour): Observable<any> {
+    console.log('Sending POST request to create tour'); // Debugging log
     return this.http.post(`${this.apiUrl}/create-tour`, tour, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
   }
+  
+  
 
   // Method to update a tour by its ID
   updateTour(id: string, tour: Partial<Tour>): Observable<any> {
