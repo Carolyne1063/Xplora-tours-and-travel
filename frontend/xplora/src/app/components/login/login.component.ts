@@ -1,42 +1,57 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+// src/app/components/login/login.component.ts
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; // Import FormBuilder, FormGroup, Validators
+import { AuthServiceService } from '../../services/authenticationService/auth-service.service';
 import { CommonModule } from '@angular/common';
-import { UserServiceService } from '../../services/userService/user-service.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NavbarComponent],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup; // Define loginForm as FormGroup
+  errorMessage: string = ''; // Initialize errorMessage as empty string
 
-  constructor(private fb: FormBuilder, private userService: UserServiceService) { // Inject the UserService
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+  constructor(
+    private formBuilder: FormBuilder, // Inject FormBuilder
+    private authService: AuthServiceService,
+    private router: Router  // Inject AuthServiceService
+  ) {
+    this.loginForm = this.formBuilder.group({ // Initialize lop0: booleanp0: booleanp0: booleanginForm using formBuilder
+      email: ['', [Validators.required, Validators.email]], // Define email FormControl with validators
+      password: ['', [Validators.required, Validators.minLength(6)]] // Define password FormControl with validators
     });
   }
 
-  get email() { return this.loginForm.get('email')!; }
-  get password() { return this.loginForm.get('password')!; }
+  ngOnInit(): void {
+  }
+
+  get email() { return this.loginForm.get('email'); } // Getter for accessing email FormControl
+  get password() { return this.loginForm.get('password'); } // Getter for accessing password FormControl
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.userService.loginUser(this.loginForm.value).subscribe(
-        response => {
-          console.log('User logged in successfully:', response);
-          // Handle successful login, maybe navigate to a different page
+      const credentials = {
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password
+      };
+
+      this.authService.login(credentials).subscribe(
+        () => {
+          console.log('Login successful');
+          this.router.navigate(['/user-dashboard']); // Redirect to user dashboard upon successful login
         },
-        error => {
-          console.error('Error logging in user:', error);
-          // Handle login error, show an error message to the user
+        (error) => {
+          console.error('Login failed', error);
+          this.errorMessage = 'Invalid credentials. Please try again.';
         }
       );
+    } else {
+      this.errorMessage = 'Please fill in all required fields.';
     }
   }
 }

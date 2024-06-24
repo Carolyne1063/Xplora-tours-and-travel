@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { ManageToursComponent } from './components/admin-dashboard/managetours/managetours.component';
 import { ManageusersComponent } from './components/admin-dashboard/manageusers/manageusers.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: 'manage-tours', component: ManageToursComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
     HttpClient,
     FormsModule,
     ReactiveFormsModule,
+    LoginComponent,
     CommonModule,
     RouterModule.forRoot(routes)
   ],

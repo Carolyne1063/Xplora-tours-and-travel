@@ -33,8 +33,13 @@ export class UserServiceService {
   }
 
   loginUser(loginDetails: LoginDetails): Observable<any> {
-    return this.http.post(`${this.API_URL}/login`, loginDetails, this.getHttpOptions())
-      .pipe(catchError(this.handleError));
+    return this.http.post<any>(`${this.API_URL}/login`, loginDetails, this.getHttpOptions())
+      .pipe(
+        tap((response: any) => {
+          // Optionally handle any side effects upon successful login
+        }),
+        catchError(this.handleError)
+      );
   }
 
   updateUser(userId: string, user: Partial<User>): Observable<any> {
