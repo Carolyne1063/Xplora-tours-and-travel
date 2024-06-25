@@ -18,13 +18,12 @@
     <h1>Live Tours</h1>
     <hr>
     <div class="tours-list">
-        <div class="tour-card">
-            <p>image</p>
+        <div class="tour-card" *ngFor="let tour of tours">
             <div class="tour-details">
-                <p>Tour type</p>
-                <p>Destination</p>
-                <p>Duration</p>
-                <p>Price</p>
+                <p>{{ tour.type }}</p>
+                <p>{{ tour.destination }}</p>
+                <p>{{ tour.duration }}</p>
+                <p>{{ tour.price }}</p>
             </div>
         </div>
     </div>
