@@ -4,7 +4,9 @@
     </div>
     <div class="tours-list">
         <div class="tour-card" *ngFor="let tour of tours">
+            <img [src]="tour.imageUrl" alt="Tour Image" *ngIf="tour.imageUrl">
             <div class="tour-details">
+                
                 <p>{{ tour.type }}</p>
             <p>{{ tour.destination }}</p>
             <p>{{ tour.duration }}</p>

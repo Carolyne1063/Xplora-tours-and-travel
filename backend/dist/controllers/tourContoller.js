@@ -10,7 +10,8 @@ const createTourController = async (req, res) => {
             destination: req.body.destination,
             duration: req.body.duration,
             price: req.body.price,
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
+            imageUrl: req.body.imageUrl
         };
         await (0, tourService_1.createTour)(tour);
         res.status(201).json({ message: 'Tour created successfully' });

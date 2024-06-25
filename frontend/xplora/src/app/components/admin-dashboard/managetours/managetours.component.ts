@@ -25,7 +25,8 @@ export class ManageToursComponent implements OnInit {
       destination: ['', Validators.required],
       duration: ['', Validators.required],
       price: ['', Validators.required],
-      createdAt: [new Date().toISOString(), Validators.required]
+      createdAt: [new Date().toISOString(), Validators.required],
+      imageUrl: ['', Validators.required]
     });
   }
 
@@ -102,7 +103,8 @@ export class ManageToursComponent implements OnInit {
       destination: tour.destination,
       duration: tour.duration,
       price: tour.price,
-      createdAt: tour.createdAt
+      createdAt: tour.createdAt,
+      imageUrl: tour.imageUrl
     });
   }
 }

@@ -38,8 +38,9 @@ const createTour = async (tour) => {
         .input('duration', sql.NVarChar, tour.duration)
         .input('price', sql.NVarChar, tour.price)
         .input('createdAt', sql.DateTime, new Date())
-        .query('INSERT INTO tours (id, type, destination, duration, price, createdAt) ' +
-        'VALUES (@id, @type, @destination, @duration, @price, @createdAt)');
+        .input('imageUrl', sql.VarChar, tour.imageUrl)
+        .query('INSERT INTO tours (id, type, destination, duration, price, createdAt, imageUrl) ' +
+        'VALUES (@id, @type, @destination, @duration, @price, @createdAt, @imageUrl)');
     return result;
 };
 exports.createTour = createTour;

@@ -4,5 +4,6 @@ export interface Tour{
     destination: string,
     duration: string,
     price: string,
-    createdAt: string
+    createdAt: string,
+    imageUrl?: string
 }

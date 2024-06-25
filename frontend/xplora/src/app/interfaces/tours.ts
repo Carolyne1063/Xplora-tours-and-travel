@@ -5,5 +5,6 @@ export interface Tour {
     duration: string;
     price: string;
     createdAt: string;
+    imageUrl?: string;
   }
   

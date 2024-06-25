@@ -56,7 +56,7 @@ const getAllBookings = async () => {
         return result.recordset;
     }
     catch (error) {
-        // Handle specific SQL errors or rethrow with a more specific error message
+        console.error(`Error fetching bookings: ${error.message}`);
         throw new Error(`Error fetching bookings: ${error.message}`);
     }
 };

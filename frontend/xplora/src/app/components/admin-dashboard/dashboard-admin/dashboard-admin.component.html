@@ -21,6 +21,7 @@
     <div class="tours-list">
         <div class="tour-card" *ngFor="let tour of tours">
             <div class="tour-details">
+                <img [src]="tour.imageUrl" alt="Tour Image" *ngIf="tour.imageUrl">
                 <p>{{ tour.type }}</p>
                 <p>{{ tour.destination }}</p>
                 <p>{{ tour.duration }}</p>

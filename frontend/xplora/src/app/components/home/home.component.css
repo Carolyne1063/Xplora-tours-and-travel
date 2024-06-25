@@ -64,6 +64,8 @@ button {
     display: flex;
 }
 .images img{
+    width: 300px;
+    height: 250px;
     position: relative;
     top: 0;
     transition: top ease 0.5s;
@@ -104,6 +106,12 @@ button {
 }
 .tour-card p{
     text-align: center;
+}
+.tour-card img{
+    width: 250px;
+    height: 150px;
+    padding:10px 10px;
+    border-radius: 5px;
 }
 .container-footer {
     height: fit-content;

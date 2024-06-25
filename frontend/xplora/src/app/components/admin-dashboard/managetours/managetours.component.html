@@ -15,12 +15,17 @@
     <label for="price">Price</label>
     <br>
     <input type="text" formControlName="price">
+    <br>
+    <label for="imageUrl">Image URL</label>
+    <br>
+    <input type="text" formControlName="imageUrl">
     <br><br>
     <button type="submit">{{ editMode ? 'Update Tour' : 'Create Tour' }}</button>
   </form>
 
   <div class="tours-list">
     <div *ngFor="let tour of tours" class="tour-card">
+      <img [src]="tour.imageUrl" alt="Tour Image" *ngIf="tour.imageUrl">
       <p>{{ tour.type }}</p>
       <p>{{ tour.destination }}</p>
       <p>{{ tour.duration }}</p>

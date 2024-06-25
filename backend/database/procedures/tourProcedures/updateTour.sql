@@ -13,4 +13,4 @@ BEGIN
       price = ISNULL(@price, price)
   WHERE id = @id
 END
-GO
+

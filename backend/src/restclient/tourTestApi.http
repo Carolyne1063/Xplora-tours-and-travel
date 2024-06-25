@@ -3,10 +3,11 @@ POST http://localhost:3000/api/tours/create-tour
 Content-Type: application/json
 
 {
-  "type": "Hiking",
-  "destination": "Mount Kilimanjaro",
+  "type": "Swimming",
+  "destination": "Maldives",
   "duration": "7 days",
-  "price": "5000"
+  "price": "5000",
+  "imageUrl": "image3"
 }
 
 ### 2. Update Tour (PUT)
@@ -26,4 +27,4 @@ GET http://localhost:3000/api/tours/tours
 GET http://localhost:3000/api/tours/E590050B-2345-40DD-822E-71AC8848AABF
 
 ### 5. Delete Tour (DELETE)
-DELETE http://localhost:3000/api/tours/ABE9C82A-2D32-4302-8299-BCB43C25CE3D
+DELETE http://localhost:3000/api/tours/6D34FA30-7381-4148-9709-E99CA87A20BE

@@ -10,13 +10,14 @@ main{
 }
 .tours-list{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
 }
 .tour-card{
     margin-bottom: 110px;
     width: 300px;
-    height: 200px;
+    height: 200px auto;
     background: linear-gradient(green, darkcyan);
     color: white;
     border: 0.5px solid white; 
@@ -25,6 +26,7 @@ main{
     height: 150px auto; 
     margin-bottom: 30px;
     box-shadow: 0px 0px 10px 5px rgba(251, 224, 224, 0.5);
+    padding: 10px;
 }
 .tour-card button{
     background-color: white;
@@ -36,6 +38,12 @@ main{
 }
 .tour-card button:hover{
     cursor: pointer;
+}
+.tour-card img{
+    width: 150px;
+    height: 100px;
+    padding:10px 10px;
+    border-radius: 5px;
 }
 .tour-details{
     padding-top: 10px;
