@@ -1,1 +1,14 @@
-<p>my-reviews works!</p>
+<div class="reviews-container">
+    <h2>Reviews</h2>
+    <hr><br><br>
+    <div class="add-review">
+        <textarea [(ngModel)]="newReview.body" placeholder="Write a review..."></textarea>
+        <button (click)="addReview()">Submit</button>
+    </div>
+    <div class="reviews-list">
+        <div *ngFor="let review of reviews" class="review-card">
+            <p>{{ review.body }}</p>
+            <button (click)="deleteReview(review.id)">Delete</button>
+        </div>
+    </div>
+</div>

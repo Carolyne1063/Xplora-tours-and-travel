@@ -53,7 +53,8 @@ const getAllBookings = async () => {
     try {
         const pool = await sql.connect(sqlConfig_1.sqlConfig);
         const result = await pool.request().query('SELECT * FROM bookings');
-        return result.recordset;
+        console.log(result.recordset);
+        return result.recordset[0];
     }
     catch (error) {
         console.error(`Error fetching bookings: ${error.message}`);

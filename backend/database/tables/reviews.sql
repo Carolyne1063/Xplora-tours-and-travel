@@ -1,0 +1,9 @@
+CREATE TABLE reviews (
+  id VARCHAR(255) PRIMARY KEY NOT NULL,
+  userId VARCHAR(255),
+  tourId UNIQUEIDENTIFIER,
+  body VARCHAR(255) NOT NULL,
+  created_at DATETIME NOT NULL,
+    CONSTRAINT FK_Bookings_Tours FOREIGN KEY (tourId) REFERENCES tours(id),
+  CONSTRAINT FK_Bookings_Users FOREIGN KEY (userId) REFERENCES users(userId)
+);

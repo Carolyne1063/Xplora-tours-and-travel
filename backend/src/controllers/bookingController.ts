@@ -34,14 +34,11 @@ const getAllBookingsController = async (req: Request, res: Response) => {
       const bookings = await getAllBookings();
   
       if (bookings.length === 0) {
-        // If no bookings found, return an appropriate response
         res.status(404).json({ message: 'No bookings found' });
       } else {
-        // If bookings found, return them in the response body
         res.status(200).json(bookings);
       }
     } catch (error) {
-      // Handle errors
       if (error instanceof Error) {
         res.status(500).json({ error: error.message });
       } else {

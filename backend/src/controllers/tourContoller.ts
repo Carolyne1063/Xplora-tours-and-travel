@@ -5,7 +5,7 @@ import { Tour } from '../interfaces/tours';
 const createTourController = async (req: Request, res: Response) => {
   try {
     const tour: Tour = {
-      id: '', // UUID will be generated in the service
+      id: '', 
       type: req.body.type,
       destination: req.body.destination,
       duration: req.body.duration,

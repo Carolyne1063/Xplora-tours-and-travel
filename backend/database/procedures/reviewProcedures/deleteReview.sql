@@ -1,0 +1,8 @@
+CREATE PROCEDURE DeleteReview
+  @reviewId UNIQUEIDENTIFIER
+AS
+BEGIN
+  DELETE FROM reviews
+  WHERE id = @reviewId
+END
+GO

@@ -1,0 +1,26 @@
+### Add a Review ###
+POST http://localhost:3000/api/reviews/create-review
+Content-Type: application/json
+
+{
+  "userId": "0ED8ADD4-8FAC-47BD-A57C-41C309880C3E",
+  "tourId": "976EE6BA-8F0F-47BC-B7B5-3FC9306C5C75",
+  "body": "Great experience! Highly recommended."
+}
+
+### Update a Review ###
+PUT http://localhost:3000/api/reviews/update-review/123456
+Content-Type: application/json
+
+{
+  "body": "Updated review content."
+}
+
+### Delete a Review ###
+DELETE http://localhost:3000/api/reviews/delete-review/123456
+
+### Fetch a Review by ID ###
+GET http://localhost:3000/api/reviews/get-review/123456
+
+### Fetch All Reviews ###
+GET http://localhost:3000/api/reviews/all-reviews

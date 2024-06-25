@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = exports.getUsers = exports.deleteUserController = exports.updateUserController = exports.loginUserController = exports.registerUser = void 0;
 const userService_1 = require("../services/userService");
-const uuid_1 = require("uuid"); // Import uuid library
+const uuid_1 = require("uuid");
 const registerUser = async (req, res) => {
     try {
         const user = {
-            userId: (0, uuid_1.v4)(), // Generate UUID for userId
+            userId: (0, uuid_1.v4)(),
             ...req.body
         };
         await (0, userService_1.createUser)(user);

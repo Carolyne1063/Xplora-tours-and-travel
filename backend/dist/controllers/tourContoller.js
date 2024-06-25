@@ -5,7 +5,7 @@ const tourService_1 = require("../services/tourService");
 const createTourController = async (req, res) => {
     try {
         const tour = {
-            id: '', // UUID will be generated in the service
+            id: '',
             type: req.body.type,
             destination: req.body.destination,
             duration: req.body.duration,

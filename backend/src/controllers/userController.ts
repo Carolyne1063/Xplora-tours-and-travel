@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import { createUser, loginUser, updateUser, deleteUser, getAllUsers, getUserById } from '../services/userService';
 import { User, LoginDetails } from '../interfaces/users';
-import { v4 as uuidv4 } from 'uuid'; // Import uuid library
+import { v4 as uuidv4 } from 'uuid'; 
 
 const registerUser = async (req: Request, res: Response) => {
   try {
     const user: User = {
-      userId: uuidv4(), // Generate UUID for userId
+      userId: uuidv4(), 
       ...req.body
     };
     await createUser(user);

@@ -33,7 +33,9 @@ const getAllBookings = async (): Promise<Booking[]> => {
     try {
       const pool = await sql.connect(sqlConfig);
       const result = await pool.request().query('SELECT * FROM bookings');
-      return result.recordset as Booking[];
+      console.log(result.recordset);
+      
+      return result.recordset[0] as Booking[];
     } catch (error: any) {
       console.error(`Error fetching bookings: ${error.message}`);
       throw new Error(`Error fetching bookings: ${error.message}`);
