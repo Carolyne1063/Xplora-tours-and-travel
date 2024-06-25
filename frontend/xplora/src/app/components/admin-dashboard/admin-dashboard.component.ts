@@ -25,7 +25,7 @@ import { ManageToursComponent } from './managetours/managetours.component';
   styleUrl: './admin-dashboard.component.css'
 })
 export class AdminDashboardComponent {
-  selectedSection: string = 'home';
+  selectedSection: string = 'dashboard';
   onSectionSelected(section: string){
     this.selectedSection = section;
   }

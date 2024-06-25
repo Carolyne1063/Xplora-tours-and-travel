@@ -26,6 +26,14 @@ h1{
     height: 150px; 
     margin-bottom: 30px;
     box-shadow: 0px 0px 5px 5px darkcyan;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.all-live-tours p, .all-bookings p, .revenue-collected p{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
 }
 .tours-list{
     padding: 12px;
