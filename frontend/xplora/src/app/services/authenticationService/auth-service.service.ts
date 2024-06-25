@@ -1,4 +1,3 @@
-// src/app/services/authenticationService/auth-service.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -25,7 +24,7 @@ export class AuthServiceService {
             // Hardcoding admin credentials here
             if (credentials.email === 'admin@example.com' && credentials.password === 'adminpassword') {
               this.isAdmin = true;
-            }else{
+            } else {
               this.isAdmin = false;
             }
           }
@@ -46,6 +45,9 @@ export class AuthServiceService {
   getIsAdmin(): boolean {
     return this.isAdmin;
   }
-}
 
-  
+  getCurrentUser(): any {
+    const currentUser = localStorage.getItem('currentUser');
+    return currentUser ? JSON.parse(currentUser) : null;
+  }
+}

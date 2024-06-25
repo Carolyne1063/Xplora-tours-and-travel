@@ -7,7 +7,7 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
         <div class="form-control">
           <label for="firstName">First Name</label>
-          <input formControlName="firstName" type="text">
+          <input formControlName="firstname" type="text">
           <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
             <small *ngIf="firstName.errors?.['required']">First Name is required.</small>
           </div>
@@ -15,7 +15,7 @@
         <br><br>
         <div class="form-control">
           <label for="lastName">Last Name</label>
-          <input formControlName="lastName" type="text">
+          <input formControlName="lastname" type="text">
           <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
             <small *ngIf="lastName.errors?.['required']">Last Name is required.</small>
           </div>

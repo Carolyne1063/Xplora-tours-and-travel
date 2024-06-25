@@ -1,18 +1,21 @@
 <main>
     <h1>Your profile</h1>
-<div class="profile">
-    <p>First Name</p>
-    <input type="text">
-    <br>
-    <p>Last Name</p>
-    <input type="email">
-    <br>
-    <p>Email</p>
-    <input type="text">
-    <br>
-    <p>Password</p>
-    <input type="text">
-    <br><br>
-    <button>Update Details</button>
-</div>
-</main>
+    <div class="profile">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <p>First Name</p>
+        <input type="text" formControlName="firstname">
+        <br>
+        <p>Last Name</p>
+        <input type="text" formControlName="lastname">
+        <br>
+        <p>Email</p>
+        <input type="email" formControlName="email" readonly>
+        <br>
+        <p>Password</p>
+        <input type="password" formControlName="password">
+        <br><br>
+        <button type="submit">Update Details</button>
+      </form>
+    </div>
+  </main>
+  
