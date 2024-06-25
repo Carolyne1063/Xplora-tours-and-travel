@@ -56,12 +56,36 @@ const getUserByEmail = async (email) => {
     return result.recordset[0];
 };
 exports.getUserByEmail = getUserByEmail;
+// Hardcoded admin credentials
+const adminCredentials = {
+    email: 'admin@example.com',
+    password: 'adminpassword'
+};
 const loginUser = async (loginDetails) => {
-    const user = await getUserByEmail(loginDetails.email);
-    if (user && await bcrypt_1.default.compare(loginDetails.password, user.password)) {
-        const token = jsonwebtoken_1.default.sign({ userId: user.userId }, 'your_secret_key', { expiresIn: '1h' });
-        return { token };
+    console.log('Attempting to log in:', loginDetails);
+    // Check if login details match hardcoded admin credentials
+    if (loginDetails.email === adminCredentials.email && loginDetails.password === adminCredentials.password) {
+        console.log('Admin login successful');
+        const token = jsonwebtoken_1.default.sign({ email: adminCredentials.email, role: 'admin' }, 'your_secret_key', { expiresIn: '1h' });
+        return { token, role: 'admin' };
     }
+    // Check if login details match any user in the database
+    const user = await getUserByEmail(loginDetails.email);
+    if (user) {
+        console.log('User found:', user);
+        if (await bcrypt_1.default.compare(loginDetails.password, user.password)) {
+            console.log('User login successful');
+            const token = jsonwebtoken_1.default.sign({ userId: user.userId, role: 'user' }, 'your_secret_key', { expiresIn: '1h' });
+            return { token, role: 'user' };
+        }
+        else {
+            console.log('Password mismatch');
+        }
+    }
+    else {
+        console.log('User not found in database');
+    }
+    console.log('Login failed: Invalid email or password');
     throw new Error('Invalid email or password');
 };
 exports.loginUser = loginUser;

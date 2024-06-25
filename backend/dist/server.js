@@ -8,6 +8,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const tourRoutes_1 = __importDefault(require("./routers/tourRoutes"));
 const userRoutes_1 = __importDefault(require("./routers/userRoutes"));
 const cors_1 = __importDefault(require("cors"));
+const bookingRoutes_1 = __importDefault(require("./routers/bookingRoutes"));
 // import authenticationRoutes from './routers/authenticationRoutes';
 const app = (0, express_1.default)();
 const port = 3000;
@@ -17,6 +18,7 @@ app.use((0, cors_1.default)());
 // Use existing routes
 app.use('/api/tours', tourRoutes_1.default);
 app.use('/api/users', userRoutes_1.default);
+app.use('/api', bookingRoutes_1.default);
 // app.use('/api/auth', authenticationRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {

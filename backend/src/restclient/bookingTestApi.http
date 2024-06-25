@@ -1,0 +1,27 @@
+### 1. Create Booking (POST)
+POST http://localhost:3000/api/bookings/create-booking
+Content-Type: application/json
+
+{
+  "tourId": "6D34FA30-7381-4148-9709-E99CA87A20BE",
+  "userId": "6D155180-5DE2-4F52-93D7-4C7B8558FC0F",
+  "bookingDate": "2024-06-25T10:30:00",
+  "status": "Confirmed"
+}
+
+### 2. Update Booking (PUT)
+PUT http://localhost:3000/api/bookings/E590050B-2345-40DD-822E-71AC8848AABF
+Content-Type: application/json
+
+{
+  "status": "Cancelled"
+}
+
+### 3. Fetch All Bookings (GET)
+GET http://localhost:3000/api/bookings/all-bookings
+
+### 4. Fetch Booking by ID (GET)
+GET http://localhost:3000/api/bookings/E590050B-2345-40DD-822E-71AC8848AABF
+
+### 5. Delete Booking (DELETE)
+DELETE http://localhost:3000/api/bookings/ABE9C82A-2D32-4302-8299-BCB43C25CE3D
